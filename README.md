@@ -1,2 +1,2 @@
 # MockPracticalExam
-This is a Mock Practical Exam for Advanced JAVA Programming Lab TCS 605
+This is a Mock Practical Exam for Advanced JAVA Programming Lab PCS 605
