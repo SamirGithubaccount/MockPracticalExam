@@ -1,0 +1,18 @@
+#include <iostream>
+
+
+//Create namespace named std
+using namespace std;
+
+
+//Application enterance function main()
+int main()
+{
+
+    //Print "Hello World" to the standard output
+    cout << "Hello, World!\n";
+
+    //Main function return value
+    return 0;
+
+}
