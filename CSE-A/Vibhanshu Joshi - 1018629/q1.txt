@@ -1,0 +1,16 @@
+import java.util.Scanner;
+
+public class ques1 {
+    public static void main(String args[]) {
+        int a, b, sum;
+        Scanner scan = new Scanner(System.in);
+
+        System.out.print("Enter Two Numbers : ");
+        a = scan.nextInt();
+        b = scan.nextInt();
+
+        sum = a + b;
+
+        System.out.print("Sum of the Two Numbers is " + sum);
+    }
+}
