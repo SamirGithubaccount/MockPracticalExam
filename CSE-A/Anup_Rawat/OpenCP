@@ -1,0 +1,86 @@
+								Face Detection with python using openCV
+
+                ##########################INTRODUCTION##########################
+
+Face detection is a computer vision technology that helps to locate /visualize human faces in digital images.
+This technique is a specific use case of object detection technology that deal with detecting instance of sementic object of a certain class (such as humans, building , car etc.) in digital images and video.
+With the advent of technology, face detction has gained a lot of importance especially in field like photography, security and marketing.
+				
+				########################PRE-REQUISITES###########################
+
+Hands-on knowledge of Numpy and Matplotlib is essentila before working on the concept of openCV.
+	*numpy>>>>
+			# numpy is a Python library that adds support a large,multidimensional array it also include a large collection of mathematical function to operate an array 
+				
+				#########################OpenCV-Python###########################
+
+openCV was started at intel in the year 1999 by Gary Bradsky. The first release came a little later int the year 2000. OpenCV essentially stands for Open Source Computer Vision Library.
+
+OpenCV was designed for computational efficiency and with a strong focus on real time application. So it's perfect for real time face recognition using a camera.
+
+OpenCV-python is the python API for OpenCV .you can think of it as a python wrapper around the c++ implementation of OpenCV. OpenCV-Python is not only fast but is also easy to code and deploy. This makes it a great choice to perform computationally intensive program.
+
+				#######################Images as Arrays##########################
+
+An image is nothing but a standard Numpy array containing pixels of data points. More the number of pixels in an, the better is its resolution. You can think of pixels to be tiny blocks of information arranged in the form of a 2D grid, and the depth of a pixels refers to the color information presents in it. in order to be processed by a computer, an image needs to be converted into a binary form .
+
+1. BINARY IMAGE
+A binary image consists of 1 bit/pixel and so can have only two possible colors, ie., black and white. Black represent by the value 0 while 1 represent white.
+
+2. GRAYSCALE IMAGE
+A grayscale image consists of 8 bits per pixels. this means it can have 256 differet shade where 0 pixels will represent black color while 255 denotes white.
+
+3. COLORED IMAGE
+Colored images are represented as a combination of Red, Blue, and Green, and all the other color can be achieved by mixing these primary color in correct proportion. A colored image also consist of 8 bitss/pixels.
+
+					#############################Images and OpenCV######################
+
+Importing images in OpenCV 
+	* import the necessary libraries
+		# import cv2
+		# import numpy as np
+		# import matplotlib.pyplot as plt 
+	* Read the image using the imread function 
+		# img = cv2.imread("file path")
+		# gray_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+			.cvtColor() function converts the input image object into  a grayscale  object.
+
+	* Capture video from  camera
+		# cap = cv2.VideoCapture(0)
+			To capture a video , we need to create a VideoCapture object. It's argument can be either the device index or the name of a video file. Device index is just the number to specify which camera ....we can simply pass 0 (or -1) you can select the second camera by passing 1 and so on.  After that, you can capture frame by frame ....at the end we will release all the capture 
+		# cap.read()
+			it return a bool(True/False). if the frame is read correctly,it will be true.
+
+>>>>>>>>>>> Here we can change the height and width of the frame...for that we can use cap.set(3,320) and cap.set(4,420)... by default it give 640*480.
+
+	* we have added the code to load an image 
+		# faceCascade = cv2.CascadeClassifier("File-Path")
+		# faces=haar_face_cascade.detectMultiScale(gray_img, scaleFactor=1.1, minNeighbors=5); 
+
+			the above line of code will create a faceCascade objects that will load the Haar Cascade file with the cv2.CascadeClassifier method.This allow pyhton and your code to use the Haar CAscsde.>>>>>>>>>>>>>>>>>>>> next>>the code applies OpenCV .detectMultiScale() method on the faceCascade object. this generate a list of rectangel for all of the  detected faces in the image. the list of rectangel is a collection of pixels location from the image, in form of rect(x,y,w,h).. 
+
+	* then you will use OpenCV .rectangle() method  to draw  a rectangle around the detected faces  
+		# for (x, y, w, h) in faces:
+    	# cv2.rectangle(img, (x, y), (x+w, y+h), (0, 255, 0), 2)
+
+    		it take  four argument
+    			->>image:: tell the code to draw rectangel on the original input image
+
+    			->>(x, y), (x+w, y+h):: are the four pixel location for the detect objects. rectangle will use these t locate and draw rectangle around the detected objects in the input image 
+
+    			->>(0, 255, 0):: is the color of the shape. this argument get passed as a tuple for BGR. for blue we use (0,255,0) and above we use for green .
+
+    			->>2 is the thickness of the line measured in pixels.
+
+	* viewing the image using imshow function
+		# img = cv2.imshow('img')
+
+	* OpenCV and matplotlib have different orders of primary colors .Whereas OpenCV  reads image in the form of BGR, matplotlib .on the other hands, follows the order of RGB. Thus, when we read a file through OpenCV, we read it as if it contain channel in the order of blue,green and red. However, when we display the image using matplotlib, the red and blue channel gets swapped and hence  the blue tinge. to avoid this issue, we will transform the channel to how matplotlib expects it to be using the cvtColor function.
+		# img = cv2.cvtColor(img_raw,cv2.COLOR_BGRTORGB)
+		# img = cv2.cvtColor(img_raw,cv2.COLOR_BGR2GRAY)
+			cvtColor() method is used to convert an image from one color space to another.
+
+	* The cv2.waitKey() is a keyboard binding function. its argument is the time in milliseconds. the function waits for specified millisecond for any keyboard event. if you press any key in that time, the program continues.                *                                                                                                   the second condition pertains to the pressing of the escape key on the keyboard .Thus ,if one milisecond has passed and the escape key is pressed, the loop will break and program stop.  
+
+
+	* cv2.destroyAllWindows() simply destroy all the window we created. if you want to destroy any specific window, use the function cv2.destroyWindow() where you pass the exact window name as the argument.
